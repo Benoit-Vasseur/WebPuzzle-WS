@@ -1,0 +1,21 @@
+<h1>Listing web_components</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @web_components.each do |web_component| %>
+  <tr>
+    <td><%= link_to 'Show', web_component %></td>
+    <td><%= link_to 'Edit', edit_web_component_path(web_component) %></td>
+    <td><%= link_to 'Destroy', web_component, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Web component', new_web_component_path %>
