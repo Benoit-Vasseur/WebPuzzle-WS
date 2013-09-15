@@ -62,7 +62,9 @@ module WebPuzzleWs
     config.middleware.use Rack::Cors do
       allow do
         origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options, :delete, :update]
+        resource '*',
+                 :headers => :any,
+                 :methods => [:get, :post, :options, :delete, :update]
       end
     end
 
