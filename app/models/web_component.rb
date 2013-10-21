@@ -1,3 +1,3 @@
 class WebComponent < ActiveRecord::Base
-  # attr_accessible :title, :body
+   attr_accessible :name, :description, :githubLink, :imageLink, :submitter
 end
