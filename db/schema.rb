@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131020133140) do
+ActiveRecord::Schema.define(:version => 20131103133216) do
 
   create_table "web_components", :force => true do |t|
     t.datetime "created_at",  :null => false
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20131020133140) do
     t.text     "description"
     t.string   "githubLink"
     t.integer  "submitter"
+    t.string   "demoLink"
   end
 
 end
