@@ -2,4 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  authentication:
+    notoken: "You must provide a valid token to execute this request. See manual for further information."
+    target: "You must provide a target url to be redirected to after authentication. See manual for further information."
+  security:
+    referer: "You are not coming from WebPuzzle for authentication which is forbidden !"

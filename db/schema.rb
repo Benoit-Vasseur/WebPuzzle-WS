@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130926092911) do
+ActiveRecord::Schema.define(:version => 20131105120533) do
+
+  create_table "users", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "avatar_url"
+    t.string   "github_token"
+  end
 
   create_table "web_components", :force => true do |t|
     t.datetime "created_at", :null => false

@@ -1,13 +1,12 @@
 class WebComponentsController < ApplicationController
+  before_filter { |controller| session['last_action'] = {'controller'=>controller.controller_name, 'action'=>controller.action_name }   }
+  before_filter {raise I18n.t('authentication.notoken') if((request.post? || request.put? || request.delete?) && !correct_token?)}
+
   # GET /web_components
   # GET /web_components.json
   def index
-    @web_components = WebComponent.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @web_components }
-    end
+      @web_components = WebComponent.all
+      render json: @web_components
   end
 
   # GET /web_components/1

@@ -1,6 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+#require 'omniauth'
+#require 'omniauth-github'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line

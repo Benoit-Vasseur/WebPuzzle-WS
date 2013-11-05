@@ -8,6 +8,10 @@ gem 'rack-cors'
 
 gem 'pg'
 
+gem 'ruby-prof'
+gem 'test-unit'
+
+gem 'omniauth-github'
 
 # Gems used only for assets and not required
 # in production environments by default.

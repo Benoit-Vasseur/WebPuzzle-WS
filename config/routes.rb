@@ -1,6 +1,12 @@
 WebPuzzleWs::Application.routes.draw do
   resources :web_components
+  resources :sessions
 
+  #match 'auth/:provider/callback', to: 'sessions#create_github'
+  get '/auth/:provider/send', to: 'authentication#send_authentication'
+  get '/auth/:provider/callback', to: 'authentication#github_callback'
+  get '/auth/failure', to: 'sessions#failure'
+  get '/', to: 'web_components#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -51,7 +57,7 @@ WebPuzzleWs::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   root :to => 'web_components#index'
 
   # See how all your routes lay out with "rake routes"
 
