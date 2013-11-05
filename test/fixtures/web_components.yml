@@ -4,8 +4,16 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one:
+  name: web component one
+  description: this is a test. The first.
+  githubLink: http://www.github/testone
+  imageLink: imageLink
+  submitter: 1
+
+two:
+  name: web component two
+  description: this is another test.
+  githubLink: http://www.github/testtwo
+  imageLink: imageLink two
+  submitter: 2

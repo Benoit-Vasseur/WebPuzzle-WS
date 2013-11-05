@@ -24,9 +24,14 @@ ActiveRecord::Schema.define(:version => 20131105120533) do
   end
 
   create_table "web_components", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "name"
+    t.string   "imageLink"
+    t.text     "description"
+    t.string   "githubLink"
+    t.integer  "submitter"
+    t.string   "demoLink"
   end
 
 end
