@@ -1,6 +1,6 @@
 class WebComponentsController < ApplicationController
   before_filter { |controller| session['last_action'] = {'controller'=>controller.controller_name, 'action'=>controller.action_name }   }
-  before_filter {raise I18n.t('authentication.notoken') if((request.post? || request.put? || request.delete?) && !correct_token?)}
+  before_filter {raise Exceptions::CustomException.new(I18n.t('authentication.notoken')) if((request.post? || request.put? || request.delete?) && !correct_token?)}
 
   # GET /web_components
   # GET /web_components.json

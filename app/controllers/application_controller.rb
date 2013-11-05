@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  rescue_from(Exception) do |exception|
+  #rescue_from(Exception) do |exception|
+  #  #raise exception
+  #  #render status:500, :json => {:error_message => exception.message}
+  #end
+
+  rescue_from Exceptions::CustomException do |exception|
     render status:500, :json => {:error_message => exception.message}
   end
 

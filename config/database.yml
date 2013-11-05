@@ -18,9 +18,9 @@ development:
   database: web_puzzle_ws_development
   pool: 5
   host: localhost
-  port: 5432
-  username: web_puzzle_ws
-  password: password
+  #port: 5432
+  username: rubymine
+  password: rubymine
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -46,14 +46,16 @@ test:
   database: web_puzzle_ws_test
   pool: 5
   host: localhost
-  port: 5432
-  username: web_puzzle_ws_test
-  password: password
+  #port: 5432
+  username: rubymine
+  password: rubymine
 
 production:
   adapter: postgresql
   encoding: unicode
+  host: localhost
+  #port: 5432
   database: web_puzzle_ws_production
   pool: 5
-  username: web_puzzle_ws
-  password:
+  username: rubymine
+  password: rubymine
