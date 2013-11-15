@@ -3,7 +3,6 @@ require 'net/http'
 
 class AuthenticationController < ApplicationController
   include HTTParty
-  #http_proxy 'http://proxy.ig2i.fr', 3128
   #http_proxy '195.83.230.3', 3128
   base_uri APP_CONFIG['github_api_v3']
 
