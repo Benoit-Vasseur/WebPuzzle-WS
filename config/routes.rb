@@ -5,6 +5,7 @@ WebPuzzleWs::Application.routes.draw do
   #match 'auth/:provider/callback', to: 'sessions#create_github'
   get '/auth/:provider/send', to: 'authentication#send_authentication'
   get '/auth/:provider/callback', to: 'authentication#github_callback'
+  get '/auth/:provider/check', to: 'authentication#check_token'
   get '/auth/failure', to: 'sessions#failure'
   get '/', to: 'web_components#index'
 

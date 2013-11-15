@@ -1,5 +1,7 @@
 defaults: &defaults
-  webpuzzle_front: http://localhost/
+  webpuzzle_front: http://localhost:9000/#!
+  webpuzzle_front_auth_end: '/auth/github/end/'
+  github_api_v3: https://api.github.com
 
 development:
   <<: *defaults
@@ -9,3 +11,4 @@ test:
 
 production:
   <<: *defaults
+  webpuzzle_front: http://webpuzzlefront.herokuapp.com

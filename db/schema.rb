@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20131105120533) do
     t.string   "github_token"
   end
 
+  add_index "users", ["github_token"], :name => "index_users_on_github_token", :unique => true
+
   create_table "web_components", :force => true do |t|
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false

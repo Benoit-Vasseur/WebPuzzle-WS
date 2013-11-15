@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  provider: MyString
-  uid: MyString
-  name: MyString
+  provider: github
+  uid: 1234567
+  name: fakeuser1
 
 two:
-  provider: MyString
-  uid: MyString
-  name: MyString
+  provider: github
+  uid: 08091011
+  name: fakeuser2

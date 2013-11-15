@@ -10,11 +10,8 @@ class ApplicationController < ActionController::Base
     render status:500, :json => {:error_message => exception.message}
   end
 
-  def correct_token?
-    if params[:auth_token].present?
-      not User.where(github_token: params[:auth_token].to_s).empty?
-    else
-      false
-    end
+  def correct_token?(auth_token=nil)
+    auth_token ||= params[:auth_token] if !params['auth_token'].present?
+    not User.where(github_token: auth_token).empty?
   end
 end

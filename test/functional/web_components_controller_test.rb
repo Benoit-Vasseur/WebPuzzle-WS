@@ -4,22 +4,9 @@ class WebComponentsControllerTest < ActionController::TestCase
   setup do
     @web_component = WebComponent.all.first()
 
-    module Token
-      def token
-        'ae123hsrui87qzrsdfthisispartofatest6e35c'
-      end
-    end
-
-    module Credentials
-      def credentials
-         self.extend Token
-      end
-    end
-
     info = {
-        'provider' => 'github', 'uid' => '123456', 'info' => {'nickname' => 'toto', 'image'=> 'http://www.thisisahoster.com/dummy.png'}
+        'provider' => 'github', 'uid' => '123456', 'info' => {'nickname' => 'toto', 'image'=> 'http://www.thisisahoster.com/dummy.png'}, 'credentials' => {'token'=>'ae123hsrui87qzrsdfthisispartofatest6e35c'}
     }
-    info.extend Credentials
 
     @user = User.from_omniauth(info)
   end
