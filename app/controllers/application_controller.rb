@@ -11,7 +11,9 @@ class ApplicationController < ActionController::Base
   #end
 
   def correct_token?(auth_token=nil)
-    auth_token ||= params[:auth_token] if !params['auth_token'].present?
+    auth_token = params[:auth_token] if params['auth_token'].present?
+    puts auth_token
+    puts User.where(github_token: auth_token).empty?
     not User.where(github_token: auth_token).empty?
   end
 end

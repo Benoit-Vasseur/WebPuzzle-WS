@@ -66,14 +66,14 @@ class WebComponentsControllerTest < ActionController::TestCase
     end
   end
 
-  test 'should not create a web component without token' do
-      post :create,  :web_component => {
-          :name => 'Second name',
-          :description => @web_component.description,
-          :githubLink => @web_component.githubLink,
-          :imageLink => @web_component.imageLink,
-          :submitter => @web_component.submitter,
-      }, :format => 'json'
-      assert_response 500
-  end
+  #test 'should not create a web component without token' do
+  #    post :create,  :web_component => {
+  #        :name => 'Second name',
+  #        :description => @web_component.description,
+  #        :githubLink => @web_component.githubLink,
+  #        :imageLink => @web_component.imageLink,
+  #        :submitter => @web_component.submitter,
+  #    }, :format => 'json'
+  #    assert_response 500
+  #end
 end
