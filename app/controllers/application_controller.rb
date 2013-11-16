@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
   #  #render status:500, :json => {:error_message => exception.message}
   #end
 
-  rescue_from Exceptions::CustomException do |exception|
-    render status:500, :json => {:error_message => exception.message}
-  end
+  #rescue_from Exceptions::CustomException do |exception|
+  #  render status:500, :json => {:error_message => exception.message}
+  #end
 
   def correct_token?(auth_token=nil)
     auth_token ||= params[:auth_token] if !params['auth_token'].present?
