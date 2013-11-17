@@ -52,10 +52,13 @@ class WebComponentsControllerTest < ActionController::TestCase
           :description => @web_component.description,
           :githubLink => @web_component.githubLink,
           :imageLink => @web_component.imageLink,
-          :submitter => @web_component.submitter,
+          :submitter => @user.id
       }, :format => 'json', :auth_token => @user.github_token
     end
     assert_response 201
+
+    wc = ActiveSupport::JSON.decode(@response.body)
+    assert_equal @user.id, wc['submitter']
   end
 
   test 'should not create a web component' do
@@ -66,14 +69,14 @@ class WebComponentsControllerTest < ActionController::TestCase
     end
   end
 
-  #test 'should not create a web component without token' do
-  #    post :create,  :web_component => {
-  #        :name => 'Second name',
-  #        :description => @web_component.description,
-  #        :githubLink => @web_component.githubLink,
-  #        :imageLink => @web_component.imageLink,
-  #        :submitter => @web_component.submitter,
-  #    }, :format => 'json'
-  #    assert_response 500
-  #end
+  test 'should not create a web component without token' do
+      post :create,  :web_component => {
+          :name => 'Second name',
+          :description => @web_component.description,
+          :githubLink => @web_component.githubLink,
+          :imageLink => @web_component.imageLink,
+          :submitter => @web_component.submitter,
+      }, :format => 'json'
+      assert_response 500
+  end
 end

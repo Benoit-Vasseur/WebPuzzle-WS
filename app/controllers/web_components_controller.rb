@@ -41,6 +41,9 @@ class WebComponentsController < ApplicationController
   def create
     @web_component = WebComponent.new(params[:web_component])
 
+    #User must be in db cause before_filter did the job of checking he exists
+    @web_component.update_attribute('submitter',User.find_by_github_token(params[:auth_token]).id)
+
     respond_to do |format|
       if @web_component.save
         format.html { redirect_to @web_component, notice: 'Web component was successfully created.' }
