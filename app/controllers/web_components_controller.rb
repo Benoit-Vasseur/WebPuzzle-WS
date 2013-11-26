@@ -41,8 +41,10 @@ class WebComponentsController < ApplicationController
   def create
     @web_component = WebComponent.new(params[:web_component])
 
+    #puts User.find_by_github_token(params[:auth_token]).inspect
+
     #User must be in db cause before_filter did the job of checking he exists
-    @web_component.update_attribute('submitter',User.find_by_github_token(params[:auth_token]).id)
+    @web_component.update_attribute('submitter',User.find_by_github_token(params[:auth_token]))
 
     respond_to do |format|
       if @web_component.save

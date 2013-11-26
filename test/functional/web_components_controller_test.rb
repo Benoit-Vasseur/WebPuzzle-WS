@@ -1,24 +1,48 @@
 require 'test_helper'
 
 class WebComponentsControllerTest < ActionController::TestCase
+
   setup do
     #@web_component = WebComponent.all.first()
-    infoUser = {
+    @infoNewUser = {
         'provider' => 'github', 'uid' => '123456', 'info' => {'nickname' => 'toto', 'image'=> 'http://www.thisisahoster.com/dummy.png'}, 'credentials' => {'token'=>'ae123hsrui87qzrsdfthisispartofatest6e35c'}
     }
+    #
+    @user = User.from_omniauth(@infoNewUser)
+    #
 
-    @user = User.from_omniauth(infoUser)
-
-    infoWC = {
-        'name'=> 'Its a webcomponent',
+    #@user = users(:user1)
+    @infoNewWC = {
+        'name' => 'Its a webcomponent',
         'description'=> 'And this is amazing',
         'githubLink'=> 'http://www.github.com/User/Repo.git',
         'imageLink'=> 'http://www.myhost.com/wc.png',
         'author'=> 'User',
-        'submitter' => @user.id
+        'submitter' => @user,
     }
 
-    @web_component = WebComponent.create infoWC
+    #@web_component = WebComponent.create(@infoNewWC)
+
+    #@user = Us
+    @web_component = web_components(:wc1)
+  end
+
+
+  test 'should create a web component' do
+    assert_difference 'WebComponent.count', 1 do
+      post :create,  :web_component => {
+          :name => @infoNewWC['name'],
+          :description => @infoNewWC['description'],
+          :githubLink => @infoNewWC['githubLink'],
+          :imageLink => @infoNewWC['imageLink'],
+          :submitter => @infoNewWC['submitter'],
+          :author => @infoNewWC['author']
+      }, :format => 'json', :auth_token => @infoNewUser['credentials']['token']
+    end
+    assert_response 201
+
+    wc = ActiveSupport::JSON.decode(@response.body)
+    assert_equal @user.id, wc['submitter']['id']
   end
 
   test 'should get index' do
@@ -53,23 +77,6 @@ class WebComponentsControllerTest < ActionController::TestCase
       delete :destroy, id:@web_component, :format =>'json', :auth_token => @user.github_token
     end
     assert_response 204
-  end
-
-  test 'should create a web component' do
-    assert_difference 'WebComponent.count', 1 do
-      post :create,  :web_component => {
-          :name => @web_component.name,
-          :description => @web_component.description,
-          :githubLink => @web_component.githubLink,
-          :imageLink => @web_component.imageLink,
-          :submitter => @web_component.submitter,
-          :author => @web_component.author
-      }, :format => 'json', :auth_token => @user.github_token
-    end
-    assert_response 201
-
-    wc = ActiveSupport::JSON.decode(@response.body)
-    assert_equal @user.id, wc['submitter']
   end
 
   test 'should not create a web component' do

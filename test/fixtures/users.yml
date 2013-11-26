@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+user1:
   provider: github
   uid: 1234567
   name: fakeuser1
+  github_token: 123456
+  avatar_url: http://s3.amazon.aws.com/image1.png
 
-two:
+
+user2:
   provider: github
   uid: 08091011
   name: fakeuser2
+  github_token: 789012
+  avatar_url: http://s3.amazon.aws.com/image2.png
