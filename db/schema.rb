@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131105120533) do
+ActiveRecord::Schema.define(:version => 20131118140255) do
 
   create_table "users", :force => true do |t|
     t.string   "provider"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20131105120533) do
     t.datetime "updated_at",   :null => false
     t.string   "avatar_url"
     t.string   "github_token"
+    t.string   "email"
   end
 
   add_index "users", ["github_token"], :name => "index_users_on_github_token", :unique => true
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20131105120533) do
     t.string   "githubLink"
     t.integer  "submitter"
     t.string   "demoLink"
+    t.string   "author"
   end
 
 end

@@ -9,11 +9,11 @@ one:
   description: this is a test. The first.
   githubLink: http://www.github/testone
   imageLink: imageLink
-  submitter: 1
+  author: itisme
 
 two:
   name: web component two
   description: this is another test.
   githubLink: http://www.github/testtwo
   imageLink: imageLink two
-  submitter: 2
+  author: itisyou

@@ -6,7 +6,7 @@ class WebComponentsController < ApplicationController
   # GET /web_components.json
   def index
       @web_components = WebComponent.all
-      render json: @web_components
+      render json: @web_components.to_json(:include => :submitter)
   end
 
   # GET /web_components/1

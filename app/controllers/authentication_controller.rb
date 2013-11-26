@@ -5,6 +5,8 @@ class AuthenticationController < ApplicationController
   include HTTParty
   #http_proxy '195.83.230.3', 3128
   base_uri APP_CONFIG['github_api_v3']
+  logger Rails.logger
+  debug_output $stderr if Rails.env.development?
 
 
   def github_callback
@@ -24,7 +26,6 @@ class AuthenticationController < ApplicationController
   end
 
   def check_token
-    puts params.inspect
     if !params[:access_token].present?
         raise Exceptions::CustomException.new I18n.t 'authentication.notoken'
     end
@@ -34,7 +35,12 @@ class AuthenticationController < ApplicationController
     end
 
     if params[:provider] == 'github'
-      result = self.class.get('/user', :query => {'access_token' => params[:access_token].to_s})
+      result = self.class.get(
+          '/user',
+          :query => {'access_token' =>  params[:access_token].to_s},
+          :headers => {
+            'User-Agent' => 'WebPuzzle rocks, c\'mon have a look !'
+      })
 
       raise Exceptions::CustomException.new(I18n.t('generic.unknownerror')) if result.response.code != '200'
 
