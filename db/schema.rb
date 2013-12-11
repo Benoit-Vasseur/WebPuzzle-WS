@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131118140255) do
+ActiveRecord::Schema.define(:version => 20131206091849) do
 
   create_table "users", :force => true do |t|
     t.string   "provider"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20131118140255) do
     t.integer  "submitter"
     t.string   "demoLink"
     t.string   "author"
+    t.string   "type"
   end
 
 end
