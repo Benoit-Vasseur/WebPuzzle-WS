@@ -8,7 +8,7 @@ class WebComponentsController < ApplicationController
   before_filter  :check_type, only: [:index, :create]
 
   def check_type
-    types_accepted = ['AngularJsWc', 'AngularDartWc', 'JqueryWc', 'EmberWc', 'PolymerJsWc', 'PolymerDartWc']
+    types_accepted = %W(AngularJsWc AngularDartWc JqueryWc EmberWc PolymerJsWc PolymerDartWc)
     raise Exceptions::CustomException.new('You must provide a valid type of web component') if !types_accepted.include?(params[:type])
   end
 

@@ -4,7 +4,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  webpuzzle_front: http://localhost:9000/#!
+  webpuzzle_front: http://localhost:3030/webpuzzle/web/index.html#!
 
 test:
   <<: *defaults
