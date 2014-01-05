@@ -29,11 +29,16 @@ GEM
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     arel (3.0.2)
-    aws-s3 (0.6.3)
-      builder
-      mime-types
-      xml-simple
+    aws-sdk (1.6.9)
+      httparty (~> 0.7)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     builder (3.0.4)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -60,9 +65,12 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25)
+    mini_portile (0.5.2)
     multi_json (1.8.0)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -78,6 +86,11 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    paperclip (3.5.2)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.16.0)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -107,6 +120,7 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    rmagick (2.13.2)
     ruby-prof (0.13.0)
     sass (3.2.10)
     sass-rails (3.2.6)
@@ -128,19 +142,21 @@ GEM
     uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    xml-simple (1.1.2)
+    uuidtools (2.1.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-s3
+  aws-sdk (~> 1.6.0)
   coffee-rails (~> 3.2.1)
   httparty
   omniauth-github
+  paperclip (~> 3.5.0)
   pg
   rack-cors
   rails (= 3.2.14)
+  rmagick
   ruby-prof
   sass-rails (~> 3.2.3)
   test-unit

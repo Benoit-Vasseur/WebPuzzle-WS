@@ -1,8 +1,6 @@
 class WebComponentsController < ApplicationController
   respond_to :json
 
-
-
   before_filter { |controller| session['last_action'] = {'controller'=>controller.controller_name, 'action'=>controller.action_name }   }
   before_filter { raise Exceptions::CustomException.new(I18n.t('authentication.notoken')) if((request.post? || request.put? || request.delete?) && (!params[:auth_token].present? || !correct_token?))}
   before_filter  :check_type, only: [:index, :create]

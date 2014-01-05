@@ -2,9 +2,12 @@ defaults: &defaults
   webpuzzle_front_auth_end: '/auth/github/end/'
   github_api_v3: https://api.github.com
 
-development:
+development: &development
   <<: *defaults
-  webpuzzle_front: http://localhost:3030/webpuzzle/web/index.html#!
+  webpuzzle_front: http://localhost:3030/webpuzzle/web/index.html#
+
+development_ig2i:
+  <<: *development
 
 test:
   <<: *defaults
