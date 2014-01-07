@@ -10,6 +10,7 @@ class AuthenticationController < ApplicationController
   debug_output $stderr
 
   def github_callback
+    logger.fatal "callback github"
     puts 'callback github'
     puts APP_CONFIG['webpuzzle_front']
     puts APP_CONFIG['webpuzzle_front_auth_end']
@@ -17,11 +18,12 @@ class AuthenticationController < ApplicationController
 
 
     #Récupération des informations de l'utilisateur
-    user = User.from_omniauth(env['omniauth.auth'])
+    #user = User.from_omniauth(env['omniauth.auth'])
 
-    puts user.github_token.to_s
+    #puts user.github_token.to_s
 
-    redirect_to APP_CONFIG['webpuzzle_front'] + APP_CONFIG['webpuzzle_front_auth_end'] + user.github_token.to_s
+    #redirect_to APP_CONFIG['webpuzzle_front'] + APP_CONFIG['webpuzzle_front_auth_end'] + user.github_token.to_s
+    redirect_to APP_CONFIG['webpuzzle_front'] + APP_CONFIG['webpuzzle_front_auth_end'] + 'test'
   end
 
   def send_authentication
