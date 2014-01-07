@@ -14,10 +14,12 @@ class AuthenticationController < ApplicationController
     puts APP_CONFIG['webpuzzle_front']
     puts APP_CONFIG['webpuzzle_front_auth_end']
     puts env['omniauth.auth'].inspect
-    puts user.github_token.to_s
+
 
     #Récupération des informations de l'utilisateur
     user = User.from_omniauth(env['omniauth.auth'])
+
+    puts user.github_token.to_s
 
     redirect_to APP_CONFIG['webpuzzle_front'] + APP_CONFIG['webpuzzle_front_auth_end'] + user.github_token.to_s
   end
