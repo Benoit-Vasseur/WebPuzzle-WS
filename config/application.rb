@@ -4,7 +4,7 @@ require 'rails/all'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
+  Bundler.require(*Rails.groups(:assets => %w(development development_ig2i test)))
   # If you want your assets lazily compiled in production, use this line
   # Bundler.require(:default, :assets, Rails.env)
 end
@@ -17,7 +17,7 @@ module WebPuzzleWs
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
-    config.autoload_paths += %W(#{config.root}/lib/errors)
+    config.autoload_paths += %W(#{config.root}/lib/errors #{config.root}/app/models/web_components)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -61,6 +61,13 @@ module WebPuzzleWs
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
+
+    config.before_configuration do
+      env_file = File.join(Rails.root, 'config', 'amazon_s3.yml')
+      YAML.load_file(env_file)['development'].each do |key, value|
+        ENV[key.to_s] = value.to_s
+      end if File.exists?(env_file)
+    end
 
     config.middleware.use Rack::Cors do
       allow do
