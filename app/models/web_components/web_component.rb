@@ -2,7 +2,7 @@ class WebComponent < ActiveRecord::Base
   #attr_accessible :name, :description, :githubLink, :imageLink, :submitter, :demoLink, :author, :image, :image_content_type, :image_file_name
   attr_accessible :name, :description, :githubLink, :imageLink, :submitter, :demoLink, :author, :image_id
   belongs_to :submitter, :class_name => 'User', :foreign_key => 'submitter'
-  has_one :image_id, :class_name => 'Upload', :foreign_key => 'image_id'
+  has_one :upload, :class_name => 'Upload', :foreign_key => 'image_id'
 
   #has_attached_file :image,
   #                  styles: {
