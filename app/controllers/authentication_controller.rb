@@ -29,6 +29,11 @@ class AuthenticationController < ApplicationController
     #if request.referer != APP_CONFIG['webpuzzle_front']
     #  raise Exceptions::CustomException.new I18n.t 'security.referer'
     #end
+
+    config.logger = Logger.new(STDOUT)
+    config.log_level = :info
+
+
     puts Rails.env.inspect
     puts Rails.env.production?
     logger.fatal Rails.env.inspect
