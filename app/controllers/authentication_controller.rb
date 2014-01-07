@@ -30,9 +30,6 @@ class AuthenticationController < ApplicationController
     #  raise Exceptions::CustomException.new I18n.t 'security.referer'
     #end
 
-    config.logger = Logger.new(STDOUT)
-    config.log_level = :info
-
     puts 'test '
     puts Rails.env.inspect
     puts Rails.env.production?
