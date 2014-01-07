@@ -11,4 +11,3 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require_tree .
-//= require s3_cors_fileupload
