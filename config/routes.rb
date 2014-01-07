@@ -15,7 +15,7 @@ WebPuzzleWs::Application.routes.draw do
   get '/auth/:provider/send', to: 'authentication#send_authentication'
   get '/auth/:provider/callback', to: 'authentication#github_callback'
   get '/auth/:provider/check', to: 'authentication#check_token'
-  get '/auth/failure', to: 'sessions#failure'
+  get '/auth/failure', to: 'authentication#failure'
   get '/', to: 'web_components#index'
 
   # The priority is based upon order of creation:

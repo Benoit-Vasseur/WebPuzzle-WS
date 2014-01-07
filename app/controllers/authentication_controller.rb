@@ -10,6 +10,12 @@ class AuthenticationController < ApplicationController
 
 
   def github_callback
+    puts 'callback github'
+    puts APP_CONFIG['webpuzzle_front']
+    puts APP_CONFIG['webpuzzle_front_auth_end']
+    puts env['omniauth.auth'].inspect
+    puts user.github_token.to_s
+
     #Récupération des informations de l'utilisateur
     user = User.from_omniauth(env['omniauth.auth'])
 
@@ -21,7 +27,11 @@ class AuthenticationController < ApplicationController
     #if request.referer != APP_CONFIG['webpuzzle_front']
     #  raise Exceptions::CustomException.new I18n.t 'security.referer'
     #end
+    puts Rails.env.inspect
+    puts Rails.env.production?
 
+    puts 'arrivee authentification pour le provider'
+    puts params[:provider]
     redirect_to '/auth/' + params[:provider]
   end
 

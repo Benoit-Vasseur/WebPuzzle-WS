@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(:version => 20140104235450) do
     t.string   "demoLink"
     t.string   "author"
     t.string   "type"
-    t.integer  "image_id"
   end
 
 end
