@@ -6,8 +6,8 @@ class AuthenticationController < ApplicationController
   http_proxy '195.83.230.3', 3128 if Rails.env.development_ig2i?
   base_uri APP_CONFIG['github_api_v3']
   logger Rails.logger
-  debug_output $stderr if Rails.env.development? || Rails.env.development_ig2i?
-
+  #debug_output $stderr if Rails.env.development? || Rails.env.development_ig2i?
+  debug_output $stderr
 
   def github_callback
     puts 'callback github'
@@ -29,7 +29,7 @@ class AuthenticationController < ApplicationController
     #end
     puts Rails.env.inspect
     puts Rails.env.production?
-
+    logger.fatal Rails.env.inspect
     puts 'arrivee authentification pour le provider'
     puts params[:provider]
     redirect_to '/auth/' + params[:provider]
