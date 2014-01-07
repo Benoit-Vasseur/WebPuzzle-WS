@@ -33,7 +33,7 @@ class AuthenticationController < ApplicationController
     config.logger = Logger.new(STDOUT)
     config.log_level = :info
 
-    puts 'test'
+    puts 'test '
     puts Rails.env.inspect
     puts Rails.env.production?
     logger.fatal Rails.env.inspect
