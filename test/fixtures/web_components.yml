@@ -4,6 +4,7 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
 wc1:
   name: web component one
   description: this is a test. The first.
@@ -11,6 +12,7 @@ wc1:
   imageLink: imageLink
   author: itisme
   submitter: user1
+  type: AngularJsWc
 
 wc2:
   name: web component two

@@ -1,4 +1,6 @@
 class UploadsController < ApplicationController
+  before_filter { raise Exceptions::CustomException.new(I18n.t('authentication.notoken')) if((request.post? || request.put? || request.delete?) && (!params[:auth_token].present? || !correct_token?(params[:auth_token])))}
+
   # GET /uploads
   # GET /uploads.json
   def index
@@ -66,18 +68,6 @@ class UploadsController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @upload.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /uploads/1
-  # DELETE /uploads/1.json
-  def destroy
-    @upload = Upload.find(params[:id])
-    @upload.destroy
-
-    respond_to do |format|
-      format.html { redirect_to uploads_url }
-      format.json { head :no_content }
     end
   end
 end

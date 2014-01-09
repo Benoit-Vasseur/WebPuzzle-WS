@@ -18,10 +18,6 @@ gem 'omniauth-github'
 
 gem 'httparty'
 
-#gem 'aws-s3'
-
-# gem 's3_cors_fileupload'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -34,7 +30,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-
+group :development, :test do
+  gem 'rspec-rails', '2.14.1'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

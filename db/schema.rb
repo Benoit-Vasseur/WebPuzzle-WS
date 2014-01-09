@@ -13,17 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20140104235450) do
 
-  create_table "source_files", :force => true do |t|
-    t.string   "file_name"
-    t.string   "file_content_type"
-    t.integer  "file_size"
-    t.string   "url"
-    t.string   "key"
-    t.string   "bucket"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-  end
-
   create_table "uploads", :force => true do |t|
     t.string   "file_name"
     t.string   "file_content_type"
@@ -56,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20140104235450) do
     t.string   "demoLink"
     t.string   "author"
     t.string   "type"
+    t.integer  "image_id"
   end
 
 end

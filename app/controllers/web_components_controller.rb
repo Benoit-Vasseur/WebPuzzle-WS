@@ -2,7 +2,7 @@ class WebComponentsController < ApplicationController
   respond_to :json
 
   before_filter { |controller| session['last_action'] = {'controller'=>controller.controller_name, 'action'=>controller.action_name }   }
-  before_filter { raise Exceptions::CustomException.new(I18n.t('authentication.notoken')) if((request.post? || request.put? || request.delete?) && (!params[:auth_token].present? || !correct_token?))}
+  before_filter { raise Exceptions::CustomException.new(I18n.t('authentication.notoken')) if((request.post? || request.put? || request.delete?) && (!params[:auth_token].present? || !correct_token?(params[:auth_token])))}
   before_filter  :check_type, only: [:index, :create]
 
   def check_type
@@ -59,8 +59,6 @@ class WebComponentsController < ApplicationController
 
   # DELETE /web_components/1.json
   def destroy
-    @web_component = WebComponent.find(params[:id])
-    @web_component.destroy
-    head :no_content
+    raise Exceptions::CustomException.new('Deletion is not implemented yet.')
   end
 end
