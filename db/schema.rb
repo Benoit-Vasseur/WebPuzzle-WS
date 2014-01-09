@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131206091849) do
+ActiveRecord::Schema.define(:version => 20140104235450) do
+
+  create_table "source_files", :force => true do |t|
+    t.string   "file_name"
+    t.string   "file_content_type"
+    t.integer  "file_size"
+    t.string   "url"
+    t.string   "key"
+    t.string   "bucket"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "uploads", :force => true do |t|
+    t.string   "file_name"
+    t.string   "file_content_type"
+    t.string   "file_size"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "provider"

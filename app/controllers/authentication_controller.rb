@@ -3,11 +3,10 @@ require 'net/http'
 
 class AuthenticationController < ApplicationController
   include HTTParty
-  #http_proxy '195.83.230.3', 3128
+  http_proxy '195.83.230.3', 3128 if Rails.env.development_ig2i?
   base_uri APP_CONFIG['github_api_v3']
   logger Rails.logger
-  debug_output $stderr if Rails.env.development?
-
+  debug_output $stderr if Rails.env.development? || Rails.env.development_ig2i?
 
   def github_callback
     #Récupération des informations de l'utilisateur
