@@ -4,7 +4,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  webpuzzle_front: http://localhost:3030/webpuzzle/web/index.html#!
+  webpuzzle_front: http://localhost:3030/webpuzzle/web/index.html#
 
 test:
   <<: *defaults
@@ -12,4 +12,4 @@ test:
 
 production:
   <<: *defaults
-  webpuzzle_front: http://webpuzzlefront.herokuapp.com/#!
+  webpuzzle_front: http://webpuzzlefront.herokuapp.com/#
