@@ -1,7 +1,7 @@
 defaults: &defaults
   webpuzzle_front_auth_end: '/auth/github/end/'
   github_api_v3: https://api.github.com
-  empty_placeholder: http://www.alphalux.org/image_upload/placeholder.jpg
+  empty_placeholder: https://s3-eu-west-1.amazonaws.com/webpuzzle-dev-components/missing/placeholder.jpg
 
 development: &development
   <<: *defaults
@@ -16,4 +16,5 @@ test:
 
 production:
   <<: *defaults
-  webpuzzle_front: http://webpuzzle.herokuapp.com/#
+  webpuzzle_front: https://webpuzzle.herokuapp.com/#
+  empty_placeholder: https://s3-eu-west-1.amazonaws.com/webpuzzle-components/missing/placeholder.jpg
