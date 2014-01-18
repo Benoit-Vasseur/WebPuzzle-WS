@@ -1,8 +1,17 @@
 WebPuzzleWs::Application.routes.draw do
-  resources :web_components
-  resources :sessions
+  scope :format => true do
+    get '/web_components/:type', to: 'web_components#index'
+    get '/web_component/:id', to: 'web_components#show'
+    post '/web_component/:type', to: 'web_components#create'
+    put '/web_component/:id', to: 'web_components#update'
+    delete '/web_component/:id', to: 'web_components#destroy'
+  end
 
-  #match 'auth/:provider/callback', to: 'sessions#create_github'
+  resources :uploads
+
+  match '*path', :controller => 'application', :action => 'empty', :constraints => {:method => "OPTIONS"}
+  resources :web_components
+
   get '/auth/:provider/send', to: 'authentication#send_authentication'
   get '/auth/:provider/callback', to: 'authentication#github_callback'
   get '/auth/:provider/check', to: 'authentication#check_token'
@@ -58,7 +67,7 @@ WebPuzzleWs::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => 'web_components#index'
+  root :to => 'web_components#index'
 
   # See how all your routes lay out with "rake routes"
 

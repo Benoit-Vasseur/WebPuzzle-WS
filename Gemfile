@@ -6,6 +6,9 @@ gem 'rack-cors'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'aws-sdk', '~> 1.6.0'
+gem 'rmagick'
+gem 'paperclip', '~> 3.5.0'
 gem 'pg'
 
 gem 'ruby-prof'
@@ -15,7 +18,9 @@ gem 'omniauth-github'
 
 gem 'httparty'
 
-gem 'aws-s3'
+#gem 'aws-s3'
+
+# gem 's3_cors_fileupload'
 
 # Gems used only for assets and not required
 # in production environments by default.
