@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   attr_accessible :name, :avatar_url, :github_token, :provider, :uid
   attr_readonly :id
   has_many :web_components, :class_name => 'WebComponent', :foreign_key => 'id'
+  validates :uid, :github_token, uniqueness:true
+  validates :github_token, :avatar_url, :name, :provider, presence:true
 
   def self.extract_info(auth)
     {'provider'=>auth['provider'], 'uid'=>auth['uid'], 'name'=>auth['info']['nickname'], 'avatar_url'=>auth['info']['image'], 'github_token'=>auth['credentials']['token']}

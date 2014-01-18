@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AuthenticationController do
   before do
-    request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:github]
+    #request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:github]
   end
 
   describe 'github authentication' do

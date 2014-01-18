@@ -9,7 +9,7 @@ wc1:
   name: web component one
   description: this is a test. The first.
   githubLink: http://www.github/testone
-  imageLink: imageLink
+#  imageLink: imageLink
   author: itisme
   submitter: user1
   type: AngularJsWc
@@ -18,6 +18,7 @@ wc2:
   name: web component two
   description: this is another test.
   githubLink: http://www.github/testtwo
-  imageLink: imageLink two
+#  imageLink: imageLink two
   author: itisyou
   submitter: user2
+  type: AngularDartWc

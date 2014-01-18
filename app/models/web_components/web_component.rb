@@ -1,18 +1,21 @@
 class WebComponent < ActiveRecord::Base
-  #attr_accessible :name, :description, :githubLink, :imageLink, :submitter, :demoLink, :author, :image, :image_content_type, :image_file_name
-  attr_accessible :name, :description, :githubLink, :imageLink, :submitter, :demoLink, :author, :image_id, :type
+  attr_accessible :name, :description, :githubLink, :submitter, :demoLink, :author, :imageId, :type
   belongs_to :submitter, :class_name => 'User', :foreign_key => 'submitter'
-  #has_one :upload, :class_name => 'Upload', :foreign_key => 'image_id'
+  has_one :upload, :class_name => 'Upload', :foreign_key => 'id', :primary_key => 'imageId'
 
-  #has_attached_file :image,
-  #                  styles: {
-  #                      thumb: '100x100>',
-  #                      square: '200x200#',
-  #                      medium: '300x300>'
-  #                  }
+  validates :name, :description, :githubLink, :type, :submitter, :author, :demoLink, :presence => true
+  validates :githubLink, :name, uniqueness:true
+
+  def imageLink
+    if !self.upload.nil?
+      self.upload.file(:medium)
+    else
+      APP_CONFIG['empty_placeholder']
+    end
+  end
 
   def serializable_hash(options={})
-    options = {:exclude=> :submitter, :include => {:submitter => {:only => [:id, :name]}}}.update(options)
+    options = {:methods => :imageLink, :except=> [:imageId], :include => {:submitter => {:only => [:id, :name]}}}.update(options)
     super(options)
   end
 end

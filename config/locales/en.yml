@@ -2,12 +2,33 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  activerecord:
+    models:
+      user: "User"
+    attributes:
+      user:
+        provider: "Provider"
+        uid: "Provider UID"
+        name: "Name/Pseudo"
+        avatar_url: "Avatar link"
+        github_token: "Token"
+        "email": "Email"
+
+  errors:
+    messages:
+      blank:  "cannot be blank"
   generic:
     unknownerror: "Unknown error. Refresh the page or contact us if it persists."
+    unknownentity: "The entity does not exist"
   authentication:
     notoken: "You must provide a valid token to execute this request. See manual for further information."
     tokeninvalid: "The token provided is invalid."
     target: "You must provide a target url to be redirected to after authentication. See manual for further information."
   security:
     referer: "You are not coming from WebPuzzle for authentication which is forbidden !"
+  upload:
+    size: "The upload size must not exceed 1MB."
+  webcomponent:
+    validtype: "You must provide a valid type of web component."
+    deletionnotimpl: "Deletion is not implemented yet."
 

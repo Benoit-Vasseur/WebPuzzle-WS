@@ -7,13 +7,14 @@ class WebComponentsControllerTest < ActionController::TestCase
         'provider' => 'github', 'uid' => '123456', 'info' => {'nickname' => 'toto', 'image'=> 'http://www.thisisahoster.com/dummy.png'}, 'credentials' => {'token'=>'ae123hsrui87qzrsdfthisispartofatest6e35c'}
     }
 
-    @user = User.from_omniauth(@infoNewUser)
+    #@user = User.from_omniauth(@infoNewUser)
+    @user = users(:user1)
 
     @infoNewWC = {
         'name' => 'Its a webcomponent',
         'description'=> 'And this is amazing',
         'githubLink'=> 'http://www.github.com/User/Repo.git',
-        'imageLink'=> 'http://www.myhost.com/wc.png',
+        'demoLink'=> 'http://www.myhost.com/wc.png',
         'author'=> 'User',
         'submitter' => @user,
     }
@@ -30,7 +31,7 @@ class WebComponentsControllerTest < ActionController::TestCase
     assert_response 500
 
     message = ActiveSupport::JSON.decode(@response.body)
-    assert_equal 'You must provide a valid type of web component', message['error_message']
+    assert_equal 'You must provide a valid type of web component.', message['error_message']
   end
 
   test 'should not destroy a web component (for now)' do
@@ -43,13 +44,14 @@ class WebComponentsControllerTest < ActionController::TestCase
   end
 
   test 'should not create a web component without token' do
-    post :create,  :web_component => {
-        :name => @web_component.name,
-        :description => @web_component.description,
-        :githubLink => @web_component.githubLink,
-        :imageLink => @web_component.imageLink,
-        :submitter => @web_component.submitter,
-        :author => @web_component.author
+    post :create, :type=> 'AngularJsWc', :web_component => {
+        :name => @infoNewWC['name'],
+        :description => @infoNewWC['description'],
+        :githubLink => @infoNewWC['githubLink'],
+        #:imageLink => @infoNewWC['imageLink'],
+        :demoLink => @infoNewWC['demoLink'],
+        :submitter => @user,
+        :author => @infoNewWC['author']
     }, :format => 'json'
 
     assert_response 500
@@ -72,10 +74,11 @@ class WebComponentsControllerTest < ActionController::TestCase
           :name => @infoNewWC['name'],
           :description => @infoNewWC['description'],
           :githubLink => @infoNewWC['githubLink'],
-          :imageLink => @infoNewWC['imageLink'],
-          :submitter => @infoNewWC['submitter'],
+          #:imageLink => @infoNewWC['imageLink'],
+          :demoLink => @infoNewWC['demoLink'],
+          :submitter => @user,
           :author => @infoNewWC['author']
-      }, :format => 'json', :auth_token => @infoNewUser['credentials']['token']
+      }, :format => 'json', :auth_token => @user.github_token
     end
 
     assert_response 201
@@ -96,8 +99,9 @@ class WebComponentsControllerTest < ActionController::TestCase
         :name => @web_component.name + '-AngularJsWc',
         :description => @web_component.description + '-AngularJsWc',
         :githubLink => @web_component.githubLink,
-        :imageLink => @web_component.imageLink,
-        :submitter => @web_component.submitter
+        #:imageLink => @web_component.imageLink,
+        :demoLink => @infoNewWC['demoLink'],
+        :submitter => @user
     }, :format => 'json', :auth_token => @user.github_token
 
     assert_response 204
@@ -112,15 +116,17 @@ class WebComponentsControllerTest < ActionController::TestCase
 
   #/**************************** AngularDartWc *******************************/
   test 'should create a AngularDartWc web component' do
-    assert_difference ->{ AngularDartWc.all.count }, 1 do
+    assert_difference -> { AngularDartWc.all.count }, 1 do
       post :create,  :type=> 'AngularDartWc', :web_component => {
           :name => @infoNewWC['name'],
           :description => @infoNewWC['description'],
           :githubLink => @infoNewWC['githubLink'],
-          :imageLink => @infoNewWC['imageLink'],
-          :submitter => @infoNewWC['submitter'],
+          #:imageLink => @infoNewWC['imageLink'],
+          #:submitter => @infoNewWC['submitter'],
+          :demoLink => @infoNewWC['demoLink'],
+          :submitter => @user,
           :author => @infoNewWC['author']
-      }, :format => 'json', :auth_token => @infoNewUser['credentials']['token']
+      }, :format => 'json', :auth_token => @user.github_token
     end
 
     assert_response 201
@@ -141,8 +147,9 @@ class WebComponentsControllerTest < ActionController::TestCase
         :name => @web_component.name + '-AngularDartWc',
         :description => @web_component.description + '-AngularDartWc',
         :githubLink => @web_component.githubLink,
-        :imageLink => @web_component.imageLink,
-        :submitter => @web_component.submitter
+        :demoLink => @infoNewWC['demoLink'],
+        #:imageLink => @web_component.imageLink,
+        :submitter => @user
     }, :format => 'json', :auth_token => @user.github_token
 
     assert_response 204
@@ -162,10 +169,11 @@ class WebComponentsControllerTest < ActionController::TestCase
           :name => @infoNewWC['name'],
           :description => @infoNewWC['description'],
           :githubLink => @infoNewWC['githubLink'],
-          :imageLink => @infoNewWC['imageLink'],
+          #:imageLink => @infoNewWC['imageLink'],
+          :demoLink => @infoNewWC['demoLink'],
           :submitter => @infoNewWC['submitter'],
           :author => @infoNewWC['author']
-      }, :format => 'json', :auth_token => @infoNewUser['credentials']['token']
+      }, :format => 'json', :auth_token => @user.github_token
     end
 
     assert_response 201
@@ -186,8 +194,9 @@ class WebComponentsControllerTest < ActionController::TestCase
         :name => @web_component.name + '-JqueryWc',
         :description => @web_component.description + '-JqueryWc',
         :githubLink => @web_component.githubLink,
-        :imageLink => @web_component.imageLink,
-        :submitter => @web_component.submitter
+        :demoLink => @infoNewWC['demoLink'],
+        #:imageLink => @web_component.imageLink,
+        :submitter => @user
     }, :format => 'json', :auth_token => @user.github_token
 
     assert_response 204
@@ -207,10 +216,11 @@ class WebComponentsControllerTest < ActionController::TestCase
           :name => @infoNewWC['name'],
           :description => @infoNewWC['description'],
           :githubLink => @infoNewWC['githubLink'],
-          :imageLink => @infoNewWC['imageLink'],
+          #:imageLink => @infoNewWC['imageLink'],
+          :demoLink => @infoNewWC['demoLink'],
           :submitter => @infoNewWC['submitter'],
           :author => @infoNewWC['author']
-      }, :format => 'json', :auth_token => @infoNewUser['credentials']['token']
+      }, :format => 'json', :auth_token => @user.github_token
     end
 
     assert_response 201
@@ -231,8 +241,9 @@ class WebComponentsControllerTest < ActionController::TestCase
         :name => @web_component.name + '-EmberWc',
         :description => @web_component.description + '-EmberWc',
         :githubLink => @web_component.githubLink,
-        :imageLink => @web_component.imageLink,
-        :submitter => @web_component.submitter
+        :demoLink => @infoNewWC['demoLink'],
+        #:imageLink => @web_component.imageLink,
+        :submitter => @user
     }, :format => 'json', :auth_token => @user.github_token
 
     assert_response 204
@@ -252,10 +263,11 @@ class WebComponentsControllerTest < ActionController::TestCase
           :name => @infoNewWC['name'],
           :description => @infoNewWC['description'],
           :githubLink => @infoNewWC['githubLink'],
-          :imageLink => @infoNewWC['imageLink'],
+          #:imageLink => @infoNewWC['imageLink'],
+          :demoLink => @infoNewWC['demoLink'],
           :submitter => @infoNewWC['submitter'],
           :author => @infoNewWC['author']
-      }, :format => 'json', :auth_token => @infoNewUser['credentials']['token']
+      }, :format => 'json', :auth_token => @user.github_token
     end
 
     assert_response 201
@@ -276,8 +288,9 @@ class WebComponentsControllerTest < ActionController::TestCase
         :name => @web_component.name + '-PolymerJsWc',
         :description => @web_component.description + '-PolymerJsWc',
         :githubLink => @web_component.githubLink,
-        :imageLink => @web_component.imageLink,
-        :submitter => @web_component.submitter
+        :demoLink => @infoNewWC['demoLink'],
+        #:imageLink => @web_component.imageLink,
+        :submitter => @user
     }, :format => 'json', :auth_token => @user.github_token
 
     assert_response 204
@@ -297,10 +310,11 @@ class WebComponentsControllerTest < ActionController::TestCase
           :name => @infoNewWC['name'],
           :description => @infoNewWC['description'],
           :githubLink => @infoNewWC['githubLink'],
-          :imageLink => @infoNewWC['imageLink'],
+          #:imageLink => @infoNewWC['imageLink'],
+          :demoLink => @infoNewWC['demoLink'],
           :submitter => @infoNewWC['submitter'],
           :author => @infoNewWC['author']
-      }, :format => 'json', :auth_token => @infoNewUser['credentials']['token']
+      }, :format => 'json', :auth_token => @user.github_token
     end
 
     assert_response 201
@@ -321,8 +335,9 @@ class WebComponentsControllerTest < ActionController::TestCase
         :name => @web_component.name + '-PolymerDartWc',
         :description => @web_component.description + '-PolymerDartWc',
         :githubLink => @web_component.githubLink,
-        :imageLink => @web_component.imageLink,
-        :submitter => @web_component.submitter
+        :demoLink => @infoNewWC['demoLink'],
+        #:imageLink => @web_component.imageLink,
+        :submitter => @user
     }, :format => 'json', :auth_token => @user.github_token
 
     assert_response 204

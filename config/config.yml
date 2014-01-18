@@ -1,6 +1,7 @@
 defaults: &defaults
   webpuzzle_front_auth_end: '/auth/github/end/'
   github_api_v3: https://api.github.com
+  empty_placeholder: http://www.alphalux.org/image_upload/placeholder.jpg
 
 development: &development
   <<: *defaults

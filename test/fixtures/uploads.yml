@@ -1,7 +1,7 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
+## Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+#
 one:
-  file_name: MyString
+  file_file_name: file1.jpg
 
 two:
-  file_name: MyString
+  file_file_name: file1.png

@@ -7,16 +7,19 @@ WebPuzzleWs::Application.routes.draw do
     delete '/web_component/:id', to: 'web_components#destroy'
   end
 
-  resources :uploads
-
-  match '*path', :controller => 'application', :action => 'empty', :constraints => {:method => "OPTIONS"}
-  resources :web_components
+  get '/uploads', to: 'uploads#index'
+  get '/uploads/:id', to: 'uploads#show'
+  post '/uploads', to: 'uploads#create'
+  #resources :uploads
 
   get '/auth/:provider/send', to: 'authentication#send_authentication'
   get '/auth/:provider/callback', to: 'authentication#github_callback'
   get '/auth/:provider/check', to: 'authentication#check_token'
   get '/auth/failure', to: 'authentication#failure'
   get '/', to: 'web_components#index'
+
+  match '*path', :controller => 'application', :action => 'empty', :constraints => {:method => "OPTIONS"}
+  match '*path' => 'application#render_not_found'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

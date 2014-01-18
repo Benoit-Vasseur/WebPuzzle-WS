@@ -7,7 +7,6 @@ users:
 
 webcomponents:
   -   name: catComponent
-      imageLink: https://lh6.googleusercontent.com/-T4DF4iXT3cs/AAAAAAAAAAI/AAAAAAAAAAA/E_kCzzVedoc/s48-c-k/photo.jpg
       description: I display awesome cats
       demoLink: ''
       githubLink: https://github.com/Benoit-Vasseur/WebPuzzle-Front

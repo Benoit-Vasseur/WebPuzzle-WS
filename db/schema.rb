@@ -13,10 +13,21 @@
 
 ActiveRecord::Schema.define(:version => 20140104235450) do
 
-  create_table "uploads", :force => true do |t|
+  create_table "source_files", :force => true do |t|
     t.string   "file_name"
     t.string   "file_content_type"
-    t.string   "file_size"
+    t.integer  "file_size"
+    t.string   "url"
+    t.string   "key"
+    t.string   "bucket"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "uploads", :force => true do |t|
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.string   "file_file_size"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
@@ -32,20 +43,17 @@ ActiveRecord::Schema.define(:version => 20140104235450) do
     t.string   "email"
   end
 
-  add_index "users", ["github_token"], :name => "index_users_on_github_token", :unique => true
-
   create_table "web_components", :force => true do |t|
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "name"
-    t.string   "imageLink"
     t.text     "description"
     t.string   "githubLink"
     t.integer  "submitter"
     t.string   "demoLink"
     t.string   "author"
     t.string   "type"
-    t.integer  "image_id"
+    t.integer  "imageId"
   end
 
 end
