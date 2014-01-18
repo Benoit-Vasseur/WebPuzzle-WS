@@ -15,4 +15,4 @@ test:
 
 production:
   <<: *defaults
-  webpuzzle_front: http://webpuzzlefront.herokuapp.com/#!
+  webpuzzle_front: https://webpuzzle.herokuapp.com/#
